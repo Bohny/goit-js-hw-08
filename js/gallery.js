@@ -84,3 +84,17 @@ function createMarkup(array) {
     .join("");
 }
 list.innerHTML = createMarkup(images);
+
+const onclick = (event) => {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+  const instance = basicLightbox.create(`
+      <img src="${event.target.dataset.source}" width="800" height="600">
+  `);
+
+  instance.show();
+};
+
+list.addEventListener("click", onclick);
